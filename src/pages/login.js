@@ -39,6 +39,7 @@ export default function Login() {
 
       try {
         const response = await axios.post("/auth/login", values);
+        localStorage.setItem("token",response.data.token)
         authDispatch("LOGIN", response.data.data);
         setSubmitting(false);
         router.back();

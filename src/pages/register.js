@@ -42,7 +42,6 @@ export default function Login() {
 
       try {
         const response = await axios.post("/auth/register", values);
-        authDispatch("LOGIN", response.data.data);
         setSubmitting(false);
         router.push("/login");
       } catch (error) {
