@@ -10,6 +10,7 @@ import { SWRConfig } from "swr";
 import { useRouter } from "next/router";
 
 Axios.defaults.baseURL = "https://dnaseries.herokuapp.com/api";
+// Axios.defaults.baseURL = "http://localhost:4000/api";
 Axios.defaults.withCredentials = true;
 
 function MyApp({ Component, pageProps }) {
