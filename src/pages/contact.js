@@ -11,23 +11,15 @@ export default function About({ contacts }) {
         <div className="max-w-2xl px-6  m-auto ">
           <ul className="bg-primary-2">
             {contacts?.map((contact) => (
-              
-                <a href={contact.value} target="_blank" >
-                  <li
-                    key={contact.id}
-                    className="px-4 py-6 flex items-center justify-between cursor-pointer hover:bg-blue-500"
-                  >
-                    <div>
-                      <div className="text-2xl font-semibold">
-                        {contact.name}
-                      </div>
-                      <div className="text-xl text-gray-300">
-                        {contact.value}
-                      </div>
-                    </div>
-                  </li>
-                </a>
-              
+              <li
+                key={contact.id}
+                className="px-4 py-6 flex items-center justify-between cursor-pointer hover:bg-blue-500"
+              >
+                <div>
+                  <div className="text-2xl font-semibold">{contact.name}</div>
+                  <div className="text-xl text-gray-300">{contact.value}</div>
+                </div>
+              </li>
             ))}
           </ul>
         </div>

@@ -38,13 +38,18 @@ export default function Login() {
       setSubmitting(true);
 
       try {
+        axios.defaults.headers["Authorization"] = "";
+        localStorage.removeItem("token");
         const response = await axios.post("/auth/login", values);
-        localStorage.setItem("token",response.data.token)
-        authDispatch("LOGIN", response.data.data);
+        localStorage.setItem("token", response.data.data.token);
+        authDispatch("LOGIN", response.data.data.user);
         setSubmitting(false);
-        router.back();
+        if (response.data.data.user.role === "ADMIN") {
+          return router.push("/admin");
+        }
+        return router.push("/");
       } catch (error) {
-        setErrors(error.response.data)
+        setErrors(error.response.data);
       }
     },
   });
@@ -53,9 +58,7 @@ export default function Login() {
     <div className="bg-primary-1 min-h-screen h-full flex flex-col items-center justify-center px-4">
       <div className=" max-w-xl border p-6 rounded-md">
         {errors.error && (
-          <div className="text-red-500   p-2 my-4">
-            {errors.error}
-          </div>
+          <div className="text-red-500   p-2 my-4">{errors.error}</div>
         )}
         <form onSubmit={handleSubmit}>
           <InputField

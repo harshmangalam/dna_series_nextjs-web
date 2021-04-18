@@ -46,6 +46,8 @@ export const AuthProvider = ({ children }) => {
     defaultDispatch({ type, payload });
 
   useEffect(() => {
+    const token =  localStorage.getItem("token")
+
     async function loadUser() {
       try {
         const res = await Axios.get("/auth/me");
@@ -56,7 +58,12 @@ export const AuthProvider = ({ children }) => {
         dispatch("STOP_LOADING");
       }
     }
-    loadUser();
+
+    if(token){
+      Axios.defaults.headers["Authorization"] = token
+      loadUser();
+    }
+    
   }, []);
   return (
     <DispatchContext.Provider value={dispatch}>

@@ -30,7 +30,7 @@ export default function Videos() {
   return (
     <div className="min-h-screen h-full bg-primary-3 text-white py-10">
       <div className="flex items-center justify-center">
-        <Link href="/videos/create">
+        <Link href="/admin/videos/create">
           <a className="px-6 py-5 hover:bg-blue-800 rounded flex items-center space-x-4 bg-primary-2">
             <FiUpload size="30px" />
             <span> Upload Video</span>
