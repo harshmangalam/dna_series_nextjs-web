@@ -7,6 +7,8 @@ import Dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
+import Head from "next/head"
+
 Dayjs.extend(relativeTime);
 
 export default function Posters() {
@@ -28,6 +30,11 @@ export default function Posters() {
 
   return (
     <div className="min-h-screen h-full bg-primary-3 text-white py-10">
+      <Head>
+        <title>
+          Posters | Home
+        </title>
+      </Head>
       <div className="flex items-center justify-center">
         <Link href="/admin/posters/create">
           <a className="px-6 py-5 hover:bg-blue-800 rounded flex items-center space-x-4 bg-primary-2">

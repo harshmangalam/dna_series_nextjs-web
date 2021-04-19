@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 import classNames from "classnames";
 import axios from "axios";
 import useSWR from "swr";
-
+import Head from "next/head";
 export default function Profile() {
   const router = useRouter();
   const authDispatch = useAuthDispatch();
@@ -20,6 +20,13 @@ export default function Profile() {
   };
   return (
     <div className="min-h-screen h-screen py-6  bg-primary-1 text-white">
+      <Head>
+        <title>{!user ? "Loading..." : user.data.user.name} | Profile</title>
+        <meta
+          name="description"
+          content="Login and subscribe to my newsletter"
+        ></meta>
+      </Head>
       <div className="max-w-3xl px-6 m-auto py-8  md:border-pink-600 md:border-2 flex items-center justify-center flex-col space-y-5">
         <div className="bg-primary-4 w-32 h-32 rounded-full flex items-center justify-center">
           <FaUser size="80px" />

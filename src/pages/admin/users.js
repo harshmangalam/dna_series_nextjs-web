@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useState } from "react";
 import Dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Head from "next/head"
 Dayjs.extend(relativeTime);
 
 export default function Videos() {
@@ -14,6 +15,9 @@ export default function Videos() {
 
   return (
     <div className="min-h-screen h-full bg-primary-3 text-white py-10">
+      <Head>
+        <title>Users | Admin</title>
+      </Head>
       <div className="my-10 bg-primary-1">
         <div className="max-w-7xl overflow-x-scroll m-auto">
           <table className="table-auto w-full">

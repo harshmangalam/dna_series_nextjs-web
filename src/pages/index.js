@@ -3,12 +3,16 @@ import Link from "next/link";
 import Posters from "../components/Posters/Posters";
 import VideoFeatures from "../components/Videos/VideoFeatures";
 import axios from "axios"
-
+import Head from "next/head"
 export default function Home({website}) {
   const title = website?.data?.headerTitle || "PLAYING ONLINE GAMES "
   const headerImg = website?.data?.headerImg ||"home1.png"
   return (
     <div>
+      <Head>
+        <title>Home</title>
+        <meta name="description" content="Pubg gamming live stream on youtube"></meta>
+      </Head>
       <div className="bg-primary-1">
         <section
           style={{ minHeight: "90vh" }}

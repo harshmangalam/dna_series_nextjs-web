@@ -4,6 +4,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Link from "next/link";
 import { AiOutlineDelete } from "react-icons/ai";
 import axios from "axios"
+import Head from "next/head"
 
 Dayjs.extend(relativeTime);
 
@@ -22,6 +23,11 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen h-full bg-primary-3 text-white py-10">
+      <Head>
+        <title>
+          Contacts | Admin
+        </title>
+      </Head>
       <div className="flex items-center justify-center">
         <Link href="/admin/contact/create">
           <a className="px-6 py-5 hover:bg-blue-800 rounded flex items-center space-x-4 bg-primary-2">

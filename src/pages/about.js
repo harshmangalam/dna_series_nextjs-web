@@ -1,11 +1,16 @@
 import { useRouter } from "next/router";
 import axios from "axios";
+import Head from "next/head"
 
 export default function About({ about }) {
   const router = useRouter();
 
   return (
     <div className="min-h-screen py-6  bg-primary-1 text-white">
+      <Head>
+        <title>About</title>
+        <meta name="description" content="About pubg gamming daily stream"/>
+      </Head>
       <h3 className="my-5 text-4xl text-center">About Us</h3>
       <div className="flex justify-center my-6">
         <p className="text-justify max-w-2xl px-4 text-lg text-gray-400">

@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { useAuthState } from "../../context/auth";
 import { Fragment, useEffect } from "react";
-
+import Head from "next/head"
 export default function Admin() {
   const { authenticated, user } = useAuthState();
 
@@ -22,6 +22,9 @@ export default function Admin() {
   const { data: userCount, error: userError } = useSWR("/users/userCount");
   return (
     <div className="bg-primary-3 text-white min-h-screen">
+      <Head>
+        <title>Admin</title>
+      </Head>
       {!user ? (
         <div className="flex flex-col justify-center items-center">
           <div class="h-4 bg-gray-900 rounded w-3/4"></div>

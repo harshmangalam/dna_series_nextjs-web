@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Head from "next/head"
+
 const initialValues = {
   videoId: "",
   title: "",
@@ -40,6 +42,11 @@ export default function CreateVideos() {
 
   return (
     <div className="bg-primary-3 text-white min-h-screen">
+      <Head>
+        <title>
+          Create-Videos | Admin
+        </title>
+      </Head>
       <div className="lg:max-w-7xl lg:m-auto py-10">
         <div className="my-6">
           <form className="max-w-lg m-auto border p-4" onSubmit={handleSubmit}>
