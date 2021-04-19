@@ -2,16 +2,19 @@ import Link from "next/link";
 // import Feature from "../components/Feature2/Feature2";
 import Posters from "../components/Posters/Posters";
 import VideoFeatures from "../components/Videos/VideoFeatures";
-import axios from "axios"
-import Head from "next/head"
-export default function Home({website}) {
-  const title = website?.data?.headerTitle || "PLAYING ONLINE GAMES "
-  const headerImg = website?.data?.headerImg ||"home1.png"
+import axios from "axios";
+import Head from "next/head";
+export default function Home({ website }) {
+  const title = website?.data?.headerTitle || "PLAYING ONLINE GAMES ";
+  const headerImg = website?.data?.headerImg || "home1.png";
   return (
     <div>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Pubg gamming live stream on youtube"></meta>
+        <meta
+          name="description"
+          content="Pubg gamming live stream on youtube"
+        ></meta>
       </Head>
       <div className="bg-primary-1">
         <section
@@ -21,10 +24,9 @@ export default function Home({website}) {
           <div className="flex flex-col space-y-8 lg:max-w-lg max-w-sm m-auto">
             <h1 className="text-3xl lg:text-5xl font-semibold">
               <span className="text-white">{title}</span>
-             
             </h1>
             <p className="text-white text-lg font-mono">
-             {website?.data?.headerPara}
+              {website?.data?.headerPara}
             </p>
             <Link href="/register">
               <a className="w-56 text-white text-center uppercase text-lg bg-pink-600 lg:px-4 lg:py-3  rounded-md hover:bg-pink-800 py-2">
@@ -34,7 +36,7 @@ export default function Home({website}) {
           </div>
 
           <div className="lg:w-96 h-96 ">
-            <img src={headerImg} className="h-full w-full" />
+            <img src={headerImg} alt="image" className="h-full w-full" />
           </div>
         </section>
 
@@ -46,16 +48,15 @@ export default function Home({website}) {
   );
 }
 
-export const getServerSideProps = async () => {
+export async function getStaticProps(context) {
   try {
-    const res = await axios.get("/website")
+    const res = await axios.get("/website");
     return {
-      props:{
-        website:res.data
-      }
-    }
-    
+      props: {
+        website: res.data,
+      },
+    };
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }

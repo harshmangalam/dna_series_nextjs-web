@@ -3,6 +3,7 @@ export default function Card() {
     <div className="bg-primary-2 text-white flex items-center justify-between p-6 space-x-3">
       <div className="w-24 h-24 rounded-full">
         <img
+          alt="image"
           className="w-full h-full"
           src="/home5.png"
         />

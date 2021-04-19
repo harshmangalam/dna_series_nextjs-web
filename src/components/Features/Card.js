@@ -2,7 +2,7 @@ export default function Card() {
   return (
     <div className="flex space-x-4 text-white items-center bg-primary-2  p-8">
       <div className="w-30 h-30 rounded-full">
-        <img className="w-full h-full rounded-full" src="/home3.png" />
+        <img   alt="image" className="w-full h-full rounded-full" src="/home3.png" />
       </div>
 
       <div>

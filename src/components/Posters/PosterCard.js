@@ -6,7 +6,7 @@ export default function PosterCard({ poster }) {
     >
       <h2 className="text-lg font-semibold uppercase">{poster.title}</h2>
       <div className="w-full h-72">
-        <img className="w-full h-full" src={poster.url} />
+        <img className="w-full h-full"  alt="image" src={poster.url} />
       </div>
       <div>
         <p className="text-justify">{poster.description}</p>

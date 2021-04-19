@@ -20,7 +20,7 @@ export default function Navbar() {
             />
           </div>
           <div className="w-30 h-12">
-            <img src="/logo1.png" className="w-full h-full" />
+            <img src="/logo1.png" alt="image" className="w-full h-full" />
           </div>
         </div>
 

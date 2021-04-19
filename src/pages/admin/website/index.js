@@ -54,7 +54,7 @@ export default function Videos() {
                     </p>
                   </td>
                   <td className="py-6 px-6">
-                    <img src={website.data.headerImg} className="w-32 h-32 rounded-full" />
+                    <img src={website.data.headerImg}  className="w-32 h-32 rounded-full"  alt="image" />
                   </td>
                   <td className="py-6 px-6">
                     <p style={{maxHeight:'300px',overflowY:'scroll'}} className="px-6 max-w-lg hover:text-gray-500 text-justify cursor-pointer">

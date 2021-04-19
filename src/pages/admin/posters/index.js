@@ -68,7 +68,7 @@ export default function Posters() {
                     })}
                   >
                     <td className="py-6 px-4">
-                     <img src={poster.url} className="w-80 h-52" />
+                     <img src={poster.url} className="w-80 h-52"   alt="image" />
                     </td>
                     <td className="py-6 px-4">{poster.title}</td>
                     <th className="py-6">
