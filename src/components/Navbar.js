@@ -6,8 +6,9 @@ import { RiLoginBoxLine } from "react-icons/ri";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
 export default function Navbar() {
-  const { authenticated, user } = useAuthState();
+  const { authenticated, user, loading } = useAuthState();
   const [showSidebar, setShowSidebar] = useState(false);
+
   return (
     <div className="bg-primary-1">
       <div className="flex items-center justify-between max-w-7xl m-auto px-3 py-5 text-white">
@@ -36,7 +37,9 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {authenticated ? (
+        {loading ? (
+          <div>load...</div>
+        ) : authenticated ? (
           <div className="lg:flex items-center space-x-5 hidden">
             <Link href="/profile">
               <a className="uppercase text-lg flex items-center space-x-2 hover:text-yellow-400">

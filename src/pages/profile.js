@@ -9,14 +9,14 @@ export default function Profile() {
   const router = useRouter();
   const authDispatch = useAuthDispatch();
 
-  const { data: user } = useSWR("/auth/me");
+  const { data: user, error } = useSWR("/auth/me");
 
   const logoutUser = async () => {
     const res = await axios.get("/auth/logout");
     localStorage.removeItem("token");
     axios.defaults.headers["Authorization"] = "";
     authDispatch("LOGOUT");
-    router.push("/");
+    window.location.reload();
   };
   return (
     <div className="min-h-screen h-screen py-6  bg-primary-1 text-white">
@@ -32,7 +32,7 @@ export default function Profile() {
           <FaUser size="80px" />
         </div>
         {!user ? (
-          <div class="h-4 bg-yellow-400 rounded w-full"></div>
+          <div className="h-4 bg-yellow-400 rounded w-full"></div>
         ) : (
           <h3 className="text-3xl flex items-center justify-center space-x-3">
             <div>{user.data.user.name}</div>
@@ -45,19 +45,19 @@ export default function Profile() {
           </h3>
         )}
         {!user ? (
-          <div class="h-4 bg-yellow-400 rounded w-3/4"></div>
+          <div className="h-4 bg-yellow-400 rounded w-3/4"></div>
         ) : (
           <h4 className="text-xl">{user.data.user.email}</h4>
         )}
         {!user ? (
-          <div class="h-4 bg-yellow-400 rounded w-full"></div>
+          <div className="h-4 bg-yellow-400 rounded w-full"></div>
         ) : (
           <h5 className="text-xl">
             Joind : {new Date(user.data.user.createdAt).toDateString()}
           </h5>
         )}
         {!user ? (
-          <div class="h-4 bg-yellow-400 rounded w-3/4"></div>
+          <div className="h-4 bg-yellow-400 rounded w-3/4"></div>
         ) : (
           !user.data.isActive && (
             <h5 className="text-xl">

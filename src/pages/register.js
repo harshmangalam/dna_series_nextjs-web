@@ -5,8 +5,8 @@ import { useAuthDispatch, useAuthState } from "../context/auth";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Footer from "../components/Footer"
-import Head from "next/head"
+import Footer from "../components/Footer";
+import Head from "next/head";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -54,18 +54,21 @@ export default function Login() {
 
   return (
     <div className="bg-primary-1 min-h-screen h-full flex flex-col items-center justify-center px-4">
-     
-       
-        <Head>
+      <Head>
         <title>Register Account</title>
-        <meta name="description" content="Register and subscribe to my newsletter"></meta>
+        <meta
+          name="description"
+          content="Register and subscribe to my newsletter"
+        ></meta>
       </Head>
-     
+
+      <Link href="/">
+        <a className="my-16 bg-pink-500 text-white p-4 rounded-full">Home</a>
+      </Link>
+
       <div className=" max-w-xl border p-6 rounded-md">
         {errors.error && (
-          <div className="text-red-500  my-4 p-2">
-            {errors.error}
-          </div>
+          <div className="text-red-500  my-4 p-2">{errors.error}</div>
         )}
         <form onSubmit={handleSubmit}>
           <InputField
@@ -109,10 +112,8 @@ export default function Login() {
             <a>Login</a>
           </Link>
         </div>
-        
-        <p>
-          <Footer />
-        </p>
+
+        <Footer />
       </div>
     </div>
   );

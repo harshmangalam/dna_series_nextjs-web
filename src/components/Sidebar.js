@@ -7,7 +7,7 @@ export default function Sidebar({ setShowSidebar }) {
       <div className="absolute z-20  h-96 w-full bg-primary-1 shadow-md">
         <ul className="flex items-center justify-center flex-col text-xl">
           {links.map((link) => (
-            <Link href={link.url}>
+            <Link href={link.url} key={link.name}>
               <a onClick={() => setShowSidebar(false)}>
                 <li className="px-4 py-3  text-gray-300 hover:text-white">
                   {link.name}
@@ -17,7 +17,7 @@ export default function Sidebar({ setShowSidebar }) {
           ))}
           {!authenticated &&
             authLinks.map((link) => (
-              <Link href={link.url}>
+              <Link href={link.url} key={link.name}>
                 <a onClick={() => setShowSidebar(false)}>
                   <li className="px-4 py-3  text-gray-300 hover:text-white">
                     {link.name}

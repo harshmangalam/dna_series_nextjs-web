@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Footer from "../components/Footer";
-import Head from "next/head"
+import Head from "next/head";
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required("Email is required"),
   password: Yup.string().required("Password is required"),
@@ -58,8 +58,14 @@ export default function Login() {
     <div className="bg-primary-1 min-h-screen h-full flex flex-col items-center justify-center px-4">
       <Head>
         <title>Login</title>
-        <meta name="description" content="Login and subscribe to my newsletter"></meta>
+        <meta
+          name="description"
+          content="Login and subscribe to my newsletter"
+        ></meta>
       </Head>
+      <Link href="/">
+        <a className="my-16 bg-pink-500 text-white p-4 rounded-full">Home</a>
+      </Link>
       <div className=" max-w-xl border p-6 rounded-md">
         {errors.error && (
           <div className="text-red-500   p-2 my-4">{errors.error}</div>
@@ -93,9 +99,7 @@ export default function Login() {
           </Link>
         </div>
 
-        <p>
-          <Footer />
-        </p>
+        <Footer />
       </div>
     </div>
   );

@@ -3,7 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Head from "next/head"
+import Head from "next/head";
+import { useState } from "react";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("name is required"),
@@ -17,7 +18,13 @@ export default function CreateVideos() {
     value: "",
   };
 
-  const { values, handleChange, handleSubmit, setSubmitting } = useFormik({
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    setSubmitting,
+    isSubmitting,
+  } = useFormik({
     initialValues,
     validationSchema,
     async onSubmit(values) {
@@ -36,7 +43,7 @@ export default function CreateVideos() {
   return (
     <div className="bg-primary-3 text-white min-h-screen">
       <Head>
-        <title>Create-Contacts  | Admin</title>
+        <title>Create-Contacts | Admin</title>
       </Head>
       <div className="lg:max-w-7xl lg:m-auto py-10">
         <div className="my-6">
@@ -55,10 +62,11 @@ export default function CreateVideos() {
             />
 
             <button
+              disabled={isSubmitting}
               type="submit"
               className="w-full flex items-center justify-center space-x-3 focus:outline-none bg-primary-2 px-3 py-4"
             >
-              <span>Add</span>
+              {isSubmitting ? <span>Adding...</span> : <span>Add</span>}
             </button>
           </form>
         </div>

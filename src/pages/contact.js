@@ -32,7 +32,7 @@ export default function About({ contacts }) {
   );
 }
 
-export const getStaticProps = async ({ _, res }) => {
+export const getServerSideProps = async ({ _, res }) => {
   try {
     const res = await axios.get("/website/contact");
 

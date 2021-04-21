@@ -1,12 +1,17 @@
 import Axios from "axios";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 
 const defaultState = {
   authenticated: false,
   user: null,
   loading: true,
 };
-
 
 const StateContext = createContext(defaultState);
 
@@ -42,11 +47,10 @@ const reducer = (state, { type, payload }) => {
 export const AuthProvider = ({ children }) => {
   const [state, defaultDispatch] = useReducer(reducer, defaultState);
 
-  const dispatch = (type, payload) =>
-    defaultDispatch({ type, payload });
+  const dispatch = (type, payload) => defaultDispatch({ type, payload });
 
   useEffect(() => {
-    const token =  localStorage.getItem("token")
+    const token = localStorage.getItem("token");
 
     async function loadUser() {
       try {
@@ -59,11 +63,10 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
-    if(token){
-      Axios.defaults.headers["Authorization"] = token
+    if (token) {
+      Axios.defaults.headers["Authorization"] = token;
       loadUser();
     }
-    
   }, []);
   return (
     <DispatchContext.Provider value={dispatch}>

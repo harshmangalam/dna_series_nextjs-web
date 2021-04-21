@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
 import useSWR from "swr";
-import Head from "next/head"
+import Head from "next/head";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string(),
@@ -26,9 +26,16 @@ export default function CreateVideos() {
     aboutPage: website?.data?.aboutPage || "",
   };
 
-  const { values, handleChange, handleSubmit, setSubmitting } = useFormik({
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    setSubmitting,
+    isSubmitting,
+  } = useFormik({
     initialValues,
     validationSchema,
+
     async onSubmit(values) {
       try {
         setSubmitting(true);
@@ -62,7 +69,7 @@ export default function CreateVideos() {
               handleChange={handleChange}
               name="headerTitle"
             />
-             <InputField
+            <InputField
               placeholder="Home Page Image URL"
               value={values.headerImg}
               handleChange={handleChange}
@@ -85,10 +92,11 @@ export default function CreateVideos() {
               rows={8}
             />
             <button
+              disabled={isSubmitting}
               type="submit"
               className="w-full flex items-center justify-center space-x-3 focus:outline-none bg-primary-2 px-3 py-4"
             >
-              <span>Update</span>
+              {isSubmitting ? <span>Updating...</span> : <span>Update</span>}
             </button>
           </form>
         </div>

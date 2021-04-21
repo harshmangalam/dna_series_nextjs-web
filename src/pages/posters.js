@@ -1,5 +1,4 @@
 import PosterCard from "../components/Posters/PosterCard";
-import Link from "next/link";
 import useSWR from "swr";
 import Head from "next/head"
 import { useState } from "react";

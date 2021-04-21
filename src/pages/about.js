@@ -23,16 +23,15 @@ export default function About({ about }) {
   );
 }
 
-export const getStaticProps = async ({ _, res }) => {
-  try {
-    const result = await axios.get("/website/about");
-    console.log(result.data);
-    return {
-      props: {
-        about: result.data.data,
-      },
-    };
-  } catch (err) {
-    res.writeHead(307, { Location: "/" }).end();
-  }
-};
+// export const getServerSideProps = async ({ _, res }) => {
+//   try {
+//     const result = await axios.get("/website/about");
+//     return {
+//       props: {
+//         about: result.data.data,
+//       },
+//     };
+//   } catch (err) {
+//     res.writeHead(307, { Location: "/" }).end();
+//   }
+// };

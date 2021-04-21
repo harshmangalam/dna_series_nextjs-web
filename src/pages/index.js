@@ -48,7 +48,7 @@ export default function Home({ website }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   try {
     const res = await axios.get("/website");
     return {

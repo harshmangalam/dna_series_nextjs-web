@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Head from "next/head"
+import Head from "next/head";
 
 const initialValues = {
   url: "",
@@ -24,6 +24,7 @@ export default function CreatePosters() {
     handleChange,
     handleSubmit,
     setSubmitting,
+    isSubmitting,
   } = useFormik({
     initialValues,
     validationSchema,
@@ -43,9 +44,7 @@ export default function CreatePosters() {
   return (
     <div className="bg-primary-3 text-white min-h-screen">
       <Head>
-        <title>
-          Posters | Admin
-        </title>
+        <title>Posters | Admin</title>
       </Head>
       <div className="lg:max-w-7xl lg:m-auto py-10">
         <div className="my-6">
@@ -71,9 +70,13 @@ export default function CreatePosters() {
               className="text-black w-full focus:outline-none px-3"
               rows={8}
             />
-            <button type="submit" className="w-full flex items-center justify-center space-x-3 focus:outline-none bg-primary-2 px-3 py-4">
+            <button
+              disabled={isSubmitting}
+              type="submit"
+              className="w-full flex items-center justify-center space-x-3 focus:outline-none bg-primary-2 px-3 py-4"
+            >
               <ImUpload size="20px" />
-              <span>Upload</span>
+              {isSubmitting ? <span>Uploading...</span> : <span>Upload</span>}
             </button>
           </form>
         </div>
@@ -81,4 +84,3 @@ export default function CreatePosters() {
     </div>
   );
 }
-
