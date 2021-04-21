@@ -3,25 +3,25 @@ import { useRouter } from "next/router";
 import { FaUser } from "react-icons/fa";
 import classNames from "classnames";
 import axios from "axios";
-import useSWR from "swr";
 import Head from "next/head";
 export default function Profile() {
   const router = useRouter();
   const authDispatch = useAuthDispatch();
 
-  const { data: user, error } = useSWR("/auth/me");
+  const { authenticated, user } = useAuthState();
 
   const logoutUser = async () => {
     const res = await axios.get("/auth/logout");
     localStorage.removeItem("token");
     axios.defaults.headers["Authorization"] = "";
     authDispatch("LOGOUT");
-    window.location.reload();
+    router.push("/");
   };
+
   return (
     <div className="min-h-screen h-screen py-6  bg-primary-1 text-white">
       <Head>
-        <title>{!user ? "Loading..." : user.data.user.name} | Profile</title>
+        <title>{!user ? "Loading..." : user.name} | Profile</title>
         <meta
           name="description"
           content="Login and subscribe to my newsletter"
@@ -35,11 +35,11 @@ export default function Profile() {
           <div className="h-4 bg-yellow-400 rounded w-full"></div>
         ) : (
           <h3 className="text-3xl flex items-center justify-center space-x-3">
-            <div>{user.data.user.name}</div>
+            <div>{user.name}</div>
             <div
               className={classNames("w-4 h-4 rounded-full animate-ping", {
-                "bg-green-400": user.data.user.isActive,
-                "bg-red-400": !user.data.user.isActive,
+                "bg-green-400": user.isActive,
+                "bg-red-400": !user.isActive,
               })}
             ></div>
           </h3>
@@ -47,21 +47,21 @@ export default function Profile() {
         {!user ? (
           <div className="h-4 bg-yellow-400 rounded w-3/4"></div>
         ) : (
-          <h4 className="text-xl">{user.data.user.email}</h4>
+          <h4 className="text-xl">{user.email}</h4>
         )}
         {!user ? (
           <div className="h-4 bg-yellow-400 rounded w-full"></div>
         ) : (
           <h5 className="text-xl">
-            Joind : {new Date(user.data.user.createdAt).toDateString()}
+            Joind : {new Date(user.createdAt).toDateString()}
           </h5>
         )}
         {!user ? (
           <div className="h-4 bg-yellow-400 rounded w-3/4"></div>
         ) : (
-          !user.data.isActive && (
+          !user.isActive && (
             <h5 className="text-xl">
-              Last Seen : {new Date(user.data.user.lastSeen).toDateString()}
+              Last Seen : {new Date(user.lastSeen).toDateString()}
             </h5>
           )
         )}

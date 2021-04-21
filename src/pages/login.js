@@ -30,6 +30,7 @@ export default function Login() {
     values,
     errors,
     setErrors,
+    isSubmitting,
     setSubmitting,
   } = useFormik({
     initialValues,
@@ -44,9 +45,6 @@ export default function Login() {
         localStorage.setItem("token", response.data.data.token);
         authDispatch("LOGIN", response.data.data.user);
         setSubmitting(false);
-        if (response.data.data.user.role === "ADMIN") {
-          return router.push("/admin");
-        }
         return router.push("/");
       } catch (error) {
         setErrors(error.response.data);
@@ -87,10 +85,11 @@ export default function Login() {
             error={errors.password}
           />
           <button
+          disabled={isSubmitting}
             type="submit"
             className="focus:outline-none bg-purple-600 text-white text-lg w-full py-3 rounded-md my-4"
           >
-            Login
+            {isSubmitting ? "Wait..." : "Login"}
           </button>
         </form>
         <div className="text-center text-white my-4 text-lg hover:text-yellow-400">

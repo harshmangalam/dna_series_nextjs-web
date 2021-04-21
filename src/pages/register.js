@@ -36,8 +36,10 @@ export default function Login() {
     errors,
     setErrors,
     setSubmitting,
+    isSubmitting,
   } = useFormik({
     initialValues,
+
     validationSchema,
     async onSubmit(values) {
       setSubmitting(true);
@@ -101,10 +103,11 @@ export default function Login() {
             error={errors.password}
           />
           <button
+            disabled={isSubmitting}
             type="submit"
             className="focus:outline-none bg-purple-600 text-white text-lg w-full py-3 rounded-md my-4"
           >
-            Join
+            {isSubmitting ? "Wait..." : "Join"}
           </button>
         </form>
         <div className="text-center text-white my-4 text-lg hover:text-yellow-400">

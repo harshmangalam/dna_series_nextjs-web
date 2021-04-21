@@ -14,7 +14,7 @@ export default function VideoFeatures() {
       <div className="max-w-7xl grid lg:grid-cols-2 lg:gap-6 m-auto grid-cols-1 gap-7">
         {videos?.data ? (
           videos.data.length ? (
-            videos.data.map((video) => <VideoCard video={video} />)
+            videos.data.map((video) => <VideoCard key={video.id} video={video} />)
           ) : null
         ) : (
           <p>Loading...</p>

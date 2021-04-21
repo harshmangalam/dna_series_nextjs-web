@@ -20,8 +20,8 @@ export default function Navbar() {
               onClick={() => setShowSidebar(!showSidebar)}
             />
           </div>
-          <div className="w-30 h-12">
-            <img src="/logo1.png" alt="image" className="w-full h-full" />
+          <div className="text-2xl font-mono font-bold">
+            PUBG DNA
           </div>
         </div>
 

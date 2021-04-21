@@ -10,7 +10,7 @@ import {
 const defaultState = {
   authenticated: false,
   user: null,
-  loading: true,
+  loading: false,
 };
 
 const StateContext = createContext(defaultState);
@@ -33,10 +33,10 @@ const reducer = (state, { type, payload }) => {
         user: null,
       };
 
-    case "STOP_LOADING":
+    case "LOADING":
       return {
         ...state,
-        loading: false,
+        loading: payload,
       };
 
     default:
@@ -54,17 +54,19 @@ export const AuthProvider = ({ children }) => {
 
     async function loadUser() {
       try {
+        dispatch("LOADING", true);
         const res = await Axios.get("/auth/me");
         dispatch("LOGIN", res.data.data.user);
+        dispatch("LOADING", true);
       } catch (err) {
         console.log(err);
       } finally {
-        dispatch("STOP_LOADING");
+        dispatch("LOADING", false);
       }
     }
 
     if (token) {
-      Axios.defaults.headers["Authorization"] = token;
+      Axios.defaults.headers.common["Authorization"] = token;
       loadUser();
     }
   }, []);
