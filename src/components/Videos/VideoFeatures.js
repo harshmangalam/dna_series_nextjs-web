@@ -3,9 +3,7 @@ import Link from "next/link";
 import useSWR from "swr";
 
 export default function VideoFeatures() {
-  const { data: videos, error: videoError } = useSWR(
-    `/videos?page=0&take=2`
-  );
+  const { data: videos, error } = useSWR(`/videos?page=0&take=2`);
   return (
     <div className="bg-primary-1 text-white flex flex-col space-y-10 py-10">
       <h1 className="text-center text-3xl font-bold my-4 ">
@@ -14,7 +12,9 @@ export default function VideoFeatures() {
       <div className="max-w-7xl grid lg:grid-cols-2 lg:gap-6 m-auto grid-cols-1 gap-7">
         {videos?.data ? (
           videos.data.length ? (
-            videos.data.map((video) => <VideoCard key={video.id} video={video} />)
+            videos.data.map((video) => (
+              <VideoCard key={video.id} video={video} />
+            ))
           ) : null
         ) : (
           <p>Loading...</p>

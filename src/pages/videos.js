@@ -4,9 +4,7 @@ import { useState } from "react";
 import Head from "next/head";
 export default function VideoFeatures() {
   const [pageIndex, setPageIndex] = useState(0);
-  const { data: videos, error: posterError } = useSWR(
-    `/videos?page=${pageIndex}&take=4`
-  );
+  const { data: videos, error } = useSWR(`/videos?page=${pageIndex}&take=4`);
   return (
     <div className="bg-primary-1 text-white min-h-screen py-10">
       <Head>
@@ -32,7 +30,7 @@ export default function VideoFeatures() {
             Previous
           </button>
         )}
-        {videos.hasMore && (
+        {videos?.hasMore && (
           <button
             onClick={() => setPageIndex(pageIndex + 1)}
             className="bg-blue-500 text-white px-4 py-2 rounded-full my-4"

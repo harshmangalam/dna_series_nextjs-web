@@ -28,7 +28,7 @@ export default function VideoFeatures() {
             Previous
           </button>
         )}
-        {videos.hasMore && (
+        {posters?.hasMore && (
           <button
             onClick={() => setPageIndex(pageIndex + 1)}
             className="bg-blue-500 text-white px-4 py-2 rounded-full my-4"
